@@ -1,0 +1,180 @@
+✅ What advantage does TypeScript give us?
+TypeScript is a superset of JavaScript that adds static typing and type safety, helping developers catch errors early during development rather than at runtime.
+
+Example:
+typescript
+Copy
+Edit
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+add(5, 10);     // ✅ works
+add("5", "10"); // ❌ Error at compile time
+🔹 Advantages:
+Catches errors before execution
+
+Better code completion & IntelliSense
+
+Easier to maintain large codebases
+
+Supports modern JavaScript features (ES6+)
+
+Helps with documentation via types
+
+✅ What does TypeScript add to JavaScript?
+Static Typing – Variables can have a defined type (number, string, boolean, etc.)
+
+Interfaces & Types – For defining object shapes
+
+Enums – For named constants
+
+Generics – For reusable code with type safety
+
+Access Modifiers (public, private, protected) – For class members
+
+Type Inference – Infers variable type from initial value
+
+Compilation – TS compiles to browser-compatible JS
+
+✅ Why do we need the TypeScript compiler (tsc)?
+The browser cannot run .ts files. The TypeScript compiler (tsc) converts .ts into .js files which browsers understand.
+
+🔸 What happens when you compile?
+Type checking is done
+
+Errors are reported
+
+Type annotations are removed
+
+.ts is transpiled to .js
+
+✅ Types available in TypeScript:
+Primitive: number, string, boolean, null, undefined
+
+Array: string[], number[]
+
+Tuple
+
+Enum
+
+Any, Unknown, Void, Never
+
+Object
+
+Custom types/interfaces
+
+✅ Why does add('1', '2') show error when types are defined?
+If add is defined as:
+
+ts
+Copy
+Edit
+function add(a: number, b: number): number {
+  return a + b;
+}
+Calling add("1", "2") gives an error because "1" and "2" are strings, not numbers — hence type mismatch.
+
+✅ What is type inference?
+TypeScript can automatically detect the type of a variable:
+
+ts
+Copy
+Edit
+let age = 25; // inferred as number
+🔸 Advantage:
+Less code, cleaner syntax, and still type-safe.
+
+🔸 Problem & Solution:
+Sometimes inference is incorrect. You can cast it:
+
+ts
+Copy
+Edit
+let input = document.getElementById('username') as HTMLInputElement;
+✅ What does tsc --init do?
+It creates a tsconfig.json file that:
+
+Stores compiler options
+
+Enables features like strict mode
+
+Lets you define target JS version (es6, etc.)
+
+✅ What does strict mode do?
+"strict": true in tsconfig.json enables all strict type-checking rules:
+
+No implicit any
+
+Better null checks
+
+Safer code
+
+✅ What does buttonElement! do? (Non-null assertion)
+ts
+Copy
+Edit
+const button = document.getElementById('myBtn')!;
+This tells TypeScript:
+
+“Trust me, this will not be null.”
+Use carefully — if it's actually null, you'll get a runtime error.
+
+✅ Why shouldn’t we use any type?
+any disables type checking — defeats the purpose of TypeScript.
+
+You lose auto-complete and safety.
+
+Use unknown or proper types instead.
+
+✅ How to handle objects in TypeScript?
+ts
+Copy
+Edit
+type User = {
+  name: string;
+  age: number;
+};
+
+const user: User = { name: "John", age: 30 };
+✅ Handling Arrays:
+ts
+Copy
+Edit
+const numbers: number[] = [1, 2, 3];
+✅ What does type keyword do?
+ts
+Copy
+Edit
+type Point = { x: number; y: number };
+Used to define custom types for clarity and reuse.
+
+✅ Interface vs Type:
+Interface is best for objects, especially with OOP.
+
+Interfaces can be extended, merged, and are preferred in most cases
+interface User {
+  name: string;
+  age: number;
+}
+✅ How is an array a generic?
+ts
+Copy
+Edit
+Array<number> // same as number[]
+Array<T> is a generic type — tells TypeScript which type will be inside.
+
+✅ Why change target to es6?
+
+
+"target": "es6"
+To use features like let, const, arrow functions, etc.
+
+ES6 is modern and widely supported.
+
+✅ How do generics work with promises?
+
+function fetchData(): Promise<string> {
+  return new Promise((resolve) => resolve("Data loaded"));
+}
+Ensures the resolved value is of type string.
