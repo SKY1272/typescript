@@ -178,3 +178,66 @@ function fetchData(): Promise<string> {
   return new Promise((resolve) => resolve("Data loaded"));
 }
 Ensures the resolved value is of type string.
+
+
+
+<!-- typescript show down -->
+
+
+
+✅ Q1: What is Type Casting in TypeScript?
+Type Casting allows you to tell the TypeScript compiler to treat a variable as a different type. This is useful when you're sure of the type, but the compiler isn’t.
+
+Example:
+
+ts
+Copy
+Edit
+let value: any = "123";
+let num = (value as string).length; // TypeScript now treats value as string
+✅ Q2: What is the need of RequestBody and RequestParams in Express with TypeScript?
+RequestBody is used to type the body of a request. Helpful in POST, PUT requests.
+
+RequestParams is used to type URL parameters. Helpful in GET /api/user/:id type routes.
+
+Example:
+
+ts
+Copy
+Edit
+import { Request, Response } from 'express';
+
+app.post('/user', (req: Request<{}, {}, { name: string }>, res: Response) => {
+  console.log(req.body.name); // Safe to access
+});
+✅ Video 19 & 20 Summary Questions:
+🟡 Q3: What is the problem we are solving?
+We want to separate TypeScript source files (.ts) from compiled JavaScript files (.js).
+
+Also, we want a clean folder structure and automatic compilation.
+
+🟡 Q4: How do we solve it?
+We use tsconfig.json to define:
+
+"rootDir": "./src" – where your .ts files are.
+
+"outDir": "./dist" – where the compiled .js files go.
+
+Now tsc will automatically compile TS to JS and place in dist.
+
+🟡 Q5: What does outDir: './dist' do?
+Tells TypeScript to place compiled JavaScript files in the dist folder.
+
+🟡 Q6: Why change rootDir to ./src?
+Keeps all TypeScript files organized in a separate folder (src) for clarity and maintainability.
+
+🟡 Q7: Why do we add "node dist/app.js" in package.json?
+So you can run the app using npm start.
+
+json
+Copy
+Edit
+"scripts": {
+  "start": "node dist/app.js",
+  "build": "tsc"
+}
